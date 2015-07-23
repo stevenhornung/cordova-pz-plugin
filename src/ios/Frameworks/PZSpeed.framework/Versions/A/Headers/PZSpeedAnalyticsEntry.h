@@ -26,22 +26,22 @@
 /*!
  * The timestamp when the request was fired.
  */
-@property (nonatomic) NSTimeInterval startTimestamp;
+@property (nonatomic) uint64_t startTimestamp;
 
 /*!
  * The timestamp when the request actually started.
  */
-@property (nonatomic) NSTimeInterval trueStartTimestamp;
+@property (nonatomic) uint64_t trueStartTimestamp;
 
 /*!
  * The timestamp when the first byte was received.
  */
-@property (nonatomic) NSTimeInterval firstByteTimestamp;
+@property (nonatomic) uint64_t firstByteTimestamp;
 
 /*!
  * The timestamp when the last byte was received.
  */
-@property (nonatomic) NSTimeInterval endTimestamp;
+@property (nonatomic) uint64_t endTimestamp;
 
 /*!
  * The total size of the associated resource.

@@ -54,6 +54,43 @@ var PZSpeed = {
 	        // Args. Valid values are 0-4 which respectively mean nologs, errors, warnings, info and vinfo.
 		    [ logLevel ]
 		);
+	},
+	initializeAndActivatePZSpeed: function(appID,apiKey,shouldActivatePZ) {
+    
+		cordova.exec(
+	        // Register the callback handler
+	        function callback(data) {
+
+	        },
+	        // Register the errorHandler
+	        function errorHandler(err) {
+	            alert('Error');
+	        },
+	        // Define what class to route messages to
+	        'PZSpeed',
+	        // Execute this method on the above class
+	        'initializeAndActivatePZSpeed',
+	        // Args. App id and api key as strings. 
+	        [ appID,apiKey,shouldActivatePZ ]
+    	);
+	},
+	activatePZ: function(shouldActivatePZ) {
+		cordova.exec(
+		    // Register the callback handler
+		    function callback(data) {
+
+		    },
+		    // Register the errorHandler
+		    function errorHandler(err) {
+		        alert('Error');
+		    },
+		    // Define what class to route messages to
+		    'PZSpeed',
+		    // Execute this method on the above class
+		    'activatePZ',
+	        // Args. either true or false. 
+		    [ shouldActivatePZ ]
+		);
 	}
 }
 module.exports = PZSpeed;

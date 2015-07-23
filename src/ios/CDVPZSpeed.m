@@ -38,7 +38,6 @@
 
     PZSpeedController *speedController;
     speedController = [PZSpeedController controllerWithAppID:appId apiKey:apiKey];
-    [speedController usePZ:YES];
 
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:nil];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -47,7 +46,6 @@
 - (void)usePZ:(CDVInvokedUrlCommand*)command {
 
     NSNumber* shouldUsePZ = [command.arguments objectAtIndex:0];
-    NSLog(@"usePZ: %@",shouldUsePZ);
     [[PZSpeedController sharedController] usePZ:[shouldUsePZ boolValue]];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:nil];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -58,6 +56,33 @@
     [PZSpeedController setPZLogLevel:[logLevel intValue]];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:nil];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)initializeAndActivatePZSpeed:(CDVInvokedUrlCommand*)command {
+
+    NSString* appId = [command.arguments objectAtIndex:0];
+    NSString* apiKey = [command.arguments objectAtIndex:1];
+    NSNumber* shouldActivatePZ = [command.arguments objectAtIndex:2];
+
+    PZSpeedController *speedController;
+    speedController = [PZSpeedController controllerWithAppID:appId apiKey:apiKey activatePZ:[shouldActivatePZ boolValue]];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:nil];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+}
+
+- (void)activatePZ:(CDVInvokedUrlCommand*)command {
+    NSNumber* shouldActivatePZ = [command.arguments objectAtIndex:0];
+    if ([shouldActivatePZ boolValue]) {
+        [[PZSpeedController sharedController] activatePZ];
+    }
+    else {
+        [[PZSpeedController sharedController] deactivatePZ];
+    }
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:nil];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
 }
 
 @end

@@ -8,4 +8,7 @@
 - (void)initializePZSpeed:(CDVInvokedUrlCommand*)command;
 - (void)usePZ:(CDVInvokedUrlCommand*)command;
 - (void)setPZLogLevel:(CDVInvokedUrlCommand*)command;
+- (void)initializeAndActivatePZSpeed:(CDVInvokedUrlCommand*)command;
+- (void)activatePZ:(CDVInvokedUrlCommand*)command;
+
 @end
